@@ -18,5 +18,5 @@ NB: karena ini userscript, jadi hanya bisa dipakai di versi web bilibili (bilibi
 
 1. Install Tampermonkey
 2. Install userscript dari salah satu link di bawah ini:
-    * GitHub: https://raw.githubusercontent.com/RealNath/bilibili-subtitle-hider-and-cycle/refs/heads/main/bilibili-subtitle-watermark-tweaks.user.js
+    * GitHub: https://raw.githubusercontent.com/RealNath/bilibili-subtitle-hider-and-cycle/refs/heads/main/bilibili-settings.user.js
     * Greasy Fork: https://greasyfork.org/en/scripts/600322-bilibili-tv-watermark-hider-subtitles-hider-and-cycle
