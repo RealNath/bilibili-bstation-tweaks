@@ -1,4 +1,4 @@
-![README English](https://img.shields.io/badge/README-English-black)
+![README English](https://img.shields.io/badge/README_(English)-black?logo=readme&logoColor=fff)
 [![README Indonesia](https://img.shields.io/badge/README_(Bahasa_Indonesia)-red?logo=readme&logoColor=fff)](README.id.md)
 
 # Bilibili.tv Watermark Hider, Subtitle Toggles and Cycle
