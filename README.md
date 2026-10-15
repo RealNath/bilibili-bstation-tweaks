@@ -1,3 +1,6 @@
+![README English](https://img.shields.io/badge/README-English-black)
+[![README Indonesia](https://img.shields.io/badge/README_(Bahasa_Indonesia)-red?logo=readme&logoColor=fff)](README.id.md)
+
 # Bilibili.tv Watermark Hider, Subtitle Toggles and Cycle
 
 This is a userscript to toggle hide/show watermark and subtitles in bilibili.tv (since the site doesn't provide hiding subtitles for some reason), as well as switching through a list subtitles.

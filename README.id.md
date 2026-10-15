@@ -1,3 +1,6 @@
+[![README English](https://img.shields.io/badge/README_(English)-blue?logo=readme&logoColor=fff)](README.md)
+![README Indonesia](https://img.shields.io/badge/README_(Bahasa_Indonesia)-black?logo=readme&logoColor=fff)
+
 # Sembunyikan Watermark dan Subtitle Bilibili.tv
 
 Ini adalah userscript untuk hide watermark and subtitle (takarir) di bilibili.tv (karena bilibili tidak bisa tutup subtitle) pakai shortcut. Bisa juga ganti bahasa subtitle pakai shortcut.
