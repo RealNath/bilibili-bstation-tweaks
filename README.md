@@ -1,7 +1,7 @@
 ![README English](https://img.shields.io/badge/README_(English)-black?logo=readme&logoColor=fff)
 [![README Indonesia](https://img.shields.io/badge/README_(Bahasa_Indonesia)-red?logo=readme&logoColor=fff)](README.id.md)
 
-# Bilibili.tv Watermark Hider, Subtitle Toggles and Cycle
+# Bilibili.tv (Bstation) Tweaks
 
 This is a userscript to tweak some settings in bilibili, because they don't provide any settings for you to change for some reason.
 
