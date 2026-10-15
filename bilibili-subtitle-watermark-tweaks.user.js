@@ -2,7 +2,7 @@
 // @name         Bilibili.tv Watermark Hider, Subtitles Hider and Cycle
 // @name:id      Sembunyikan Watermark dan Subtitle Bilibili.tv
 // @namespace    https://github.com/RealNath
-// @version      1.0
+// @version      1.0.1
 // @description  Hide bilibili.tv watermark, toggle show/hide subtitles, switch between languages using a shortcut.
 // @description:id Sembunyikan watermark atau subtitle bilibili. Bisa ganti bahasa pakai shortcut juga.
 // @author       RealNath
@@ -22,10 +22,10 @@ const POPUP_DURATION = 500;
 
     const style = document.createElement('style');
     let cssText = `
-    body.bili-subs-hidden .player-mobile-ass-subtitle,
-    body.bili-subs-hidden .player-mobile-subtitle {
-        display: none !important;
-    }
+        body.bili-subs-hidden .player-mobile-ass-subtitle,
+        body.bili-subs-hidden .player-mobile-subtitle {
+            display: none !important;
+        }
     `;
     if (HIDE_WATERMARK) { cssText += `.ip-watermark { display: none !important; }`; }
     style.textContent = cssText;
@@ -34,12 +34,12 @@ const POPUP_DURATION = 500;
     // popup text
     const popup = document.createElement('div');
     popup.style.cssText = `
-    position: absolute;
-    inset: 0; margin: auto; width: max-content; height: max-content;
-    color: white; font-size: 20px;
-    background: rgba(0, 0, 0, 0.75); padding: 8px 16px; border-radius: 4px;
-    z-index: 999999;
-    pointer-events: none;
+        position: absolute;
+        inset: 0; margin: auto; width: max-content; height: max-content;
+        color: white; font-size: 20px;
+        background: rgba(0, 0, 0, 0.75); padding: 8px 16px; border-radius: 4px;
+        z-index: 999999;
+        pointer-events: none;
     `;
 
     let popupTimeout;
