@@ -3,7 +3,15 @@
 
 # Bilibili.tv Watermark Hider, Subtitle Toggles and Cycle
 
-This is a userscript to toggle hide/show watermark and subtitles in bilibili.tv (since the site doesn't provide hiding subtitles for some reason), as well as switching through a list subtitles.
+This is a userscript to tweak some settings in bilibili, because they don't provide any settings for you to change for some reason.
+
+## Features (so far)
+
+* Hide watermark
+* Toggle hiding/showing subtitles
+    * yes, such a basic stuff is missing from the site 🙂
+* Cycle/switch between subtitle languages
+* Change video seek time (the original was 10 seconds)
 
 ## Shortcuts
 

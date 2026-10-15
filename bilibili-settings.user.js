@@ -2,7 +2,7 @@
 // @name         Bilibili.tv (Bstation) Tweaks
 // @name:id      Pengaturan Bstation (bilibili.tv)
 // @namespace    https://github.com/RealNath
-// @version      1.1
+// @version      1.1.1
 // @description  Tweaks for Bstation (bilibili): hide watermark, change seek time, hide subtitles, switch between languages with shortcuts.
 // @description:id Settings untuk Bstation (bilibili): sembuyiin watermark/subtitles, waktu seek/lompat video bebas, ganti bahasa pakai shortcut.
 // @author       RealNath
@@ -12,13 +12,12 @@
 // @license MIT
 // ==/UserScript==
 
-const HIDE_WATERMARK = true; // "true" or "false"
+// Hide watermark ("true" or "false")
+const HIDE_WATERMARK = true;
 const TOGGLE_SUB_SHORTCUT = 'c';
 const CYCLE_SUB_SHORTCUT = 'v';
-
 // How many seconds to skip forward or go backward
 const SEEK_STEP = 5; // seconds
-
 // How many milliseconds should popup appears
 const POPUP_DURATION = 500; // milliseconds
 
@@ -27,10 +26,10 @@ const POPUP_DURATION = 500; // milliseconds
     
     const style = document.createElement('style');
     let cssText = `
-    body.bili-subs-hidden .player-mobile-ass-subtitle,
-    body.bili-subs-hidden .player-mobile-subtitle {
-        display: none !important;
-    }
+        body.bili-subs-hidden .player-mobile-ass-subtitle,
+        body.bili-subs-hidden .player-mobile-subtitle {
+            display: none !important;
+        }
     `;
     if (HIDE_WATERMARK) { cssText += `.ip-watermark { display: none !important; }`; }
     style.textContent = cssText;
@@ -39,12 +38,12 @@ const POPUP_DURATION = 500; // milliseconds
     // popup text
     const popup = document.createElement('div');
     popup.style.cssText = `
-    position: absolute;
-    inset: 0; margin: auto; width: max-content; height: max-content;
-    color: white; font-size: 20px;
-    background: rgba(0, 0, 0, 0.75); padding: 8px 16px; border-radius: 4px;
-    z-index: 999999;
-    pointer-events: none;
+        position: absolute;
+        inset: 0; margin: auto; width: max-content; height: max-content;
+        color: white; font-size: 20px;
+        background: rgba(0, 0, 0, 0.75); padding: 8px 16px; border-radius: 4px;
+        z-index: 999999;
+        pointer-events: none;
     `;
     
     let popupTimeout;
@@ -94,8 +93,8 @@ const POPUP_DURATION = 500; // milliseconds
         
         const iconStyle = isBackward ? "transform: rotate(180deg);" : "";
         seekToast.innerHTML = `
-        <img src="//p.bstarstatic.com/fe-lib/images/web/forward.png" style="${iconStyle}">
-        <span>${step}s</span>
+            <img src="//p.bstarstatic.com/fe-lib/images/web/forward.png" style="${iconStyle}">
+            <span>${step}s</span>
         `;
         
         container.appendChild(seekToast);

@@ -5,6 +5,14 @@
 
 Ini adalah userscript untuk hide watermark and subtitle (takarir) di bilibili.tv (karena bilibili tidak bisa tutup subtitle) pakai shortcut. Bisa juga ganti bahasa subtitle pakai shortcut.
 
+## Fitur (sejauh ini)
+
+* Sembuyiin watermark
+* Sembunyiin/tunjukin subtitles (takarir)
+    * entah kenapa fitur sebasic ini ga ada 🙂
+* Ganti antara bahasa subtitles dengan cepat
+* Ganti waktu seek/lompat video waktu pas tekan tanda panah kiri/kanan (aslinya 10 detik)
+
 ## Shortcut
 
 Shortcut dan kondisi watermark (disembuyiin atau tidak) bisa diubah dari bagian atas kode, tapi ini settingan default-nya:
