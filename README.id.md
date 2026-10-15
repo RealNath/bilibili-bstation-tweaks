@@ -8,3 +8,12 @@ Shortcut dan kondisi watermark (disembuyiin atau tidak) bisa diubah dari bagian 
 * `c`: sembunyikan/tunjukkan subtitle
 * `v`: ganti ke subtitle bahasa selanjutnya di list subtitle (kembali ke pilihan pertama kalau dari subtitle terakhir)
 * `shift+v`: ganti ke subtitle bahasa sebelumnya di list subtitle (kembali ke pilihan terakhir kalau dari subtitle pertama)
+
+## Install
+
+NB: karena ini userscript, jadi hanya bisa dipakai di versi web bilibili (bilibili.tv). Tidak bisa di mobile app.
+
+1. Install Tampermonkey
+2. Install userscript dari salah satu link di bawah ini:
+    * GitHub: https://raw.githubusercontent.com/RealNath/bilibili-subtitle-hider-and-cycle/refs/heads/main/bilibili-subtitle-watermark-tweaks.user.js
+    * Greasy Fork: https://greasyfork.org/en/scripts/600322-bilibili-tv-watermark-hider-subtitles-hider-and-cycle
