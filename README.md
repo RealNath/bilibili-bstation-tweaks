@@ -1,8 +1,8 @@
-#Bilibili.tv Watermark Hider, Subtitle Toggles and Cycle
+# Bilibili.tv Watermark Hider, Subtitle Toggles and Cycle
 
 This is a userscript to toggle hide/show watermark and subtitles in bilibili.tv (since the site doesn't provide hiding subtitles for some reason), as well as switching through a list subtitles.
 
-##Shortcuts
+## Shortcuts
 
 These shortcuts and watermark hide/show can be changed on the top of the code, but the default is:
 * `c`: toggle between hiding/showing subtitles

@@ -1,8 +1,8 @@
-#Sembunyikan Watermark dan Subtitle Bilibili.tv
+# Sembunyikan Watermark dan Subtitle Bilibili.tv
 
 Ini adalah userscript untuk hide watermark and subtitle (takarir) di bilibili.tv (karena bilibili tidak bisa tutup subtitle) pakai shortcut. Bisa juga ganti bahasa subtitle pakai shortcut.
 
-##Shortcut
+## Shortcut
 
 Shortcut dan kondisi watermark (disembuyiin atau tidak) bisa diubah dari bagian atas kode, tapi ini settingan default-nya:
 * `c`: sembunyikan/tunjukkan subtitle
