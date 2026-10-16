@@ -2,7 +2,7 @@
 // @name         Bilibili.tv (Bstation) Tweaks
 // @name:id      Pengaturan Bstation (bilibili.tv)
 // @namespace    https://github.com/RealNath
-// @version      1.1.1
+// @version      1.1.2
 // @description  Tweaks for Bstation (bilibili): hide watermark, change seek time, hide subtitles, switch between languages with shortcuts.
 // @description:id Settings untuk Bstation (bilibili): sembuyiin watermark/subtitles, waktu seek/lompat video bebas, ganti bahasa pakai shortcut.
 // @author       RealNath
@@ -10,6 +10,8 @@
 // @match        https://www.bilibili.tv/*/play/*
 // @grant        none
 // @license MIT
+// @downloadURL https://update.greasyfork.org/scripts/600322/Bilibilitv%20%28Bstation%29%20Tweaks.user.js
+// @updateURL https://update.greasyfork.org/scripts/600322/Bilibilitv%20%28Bstation%29%20Tweaks.meta.js
 // ==/UserScript==
 
 // Hide watermark ("true" or "false")
@@ -23,7 +25,7 @@ const POPUP_DURATION = 500; // milliseconds
 
 (function() {
     'use strict';
-    
+
     const style = document.createElement('style');
     let cssText = `
         body.bili-subs-hidden .player-mobile-ass-subtitle,
@@ -34,7 +36,7 @@ const POPUP_DURATION = 500; // milliseconds
     if (HIDE_WATERMARK) { cssText += `.ip-watermark { display: none !important; }`; }
     style.textContent = cssText;
     document.head.appendChild(style);
-    
+
     // popup text
     const popup = document.createElement('div');
     popup.style.cssText = `
@@ -45,31 +47,31 @@ const POPUP_DURATION = 500; // milliseconds
         z-index: 999999;
         pointer-events: none;
     `;
-    
+
     let popupTimeout;
-    
+
     function showPopup(text) {
         // Target the innermost UI container so it stays above the video
         const container = document.querySelector('.player-mobile-display') ||
         document.getElementById('bilibiliPlayer') ||
         document.body;
-        
+
         if (popup.parentNode !== container) {
             container.appendChild(popup);
         }
-        
+
         popup.textContent = `${text}`;
         popup.style.opacity = '1';
-        
+
         if (popupTimeout) {
             clearTimeout(popupTimeout);
         }
-        
+
         popupTimeout = setTimeout(() => {
             popup.style.opacity = '0';
         }, POPUP_DURATION);
     }
-    
+
     // Replicating bilibili's native seek toast:
     // <div class="ip-toast ip-toast--right ip-toast--ttb">
     //     <img src="//p.bstarstatic.com/fe-lib/images/web/forward.png">
@@ -80,49 +82,49 @@ const POPUP_DURATION = 500; // milliseconds
         const container = document.querySelector('.player-mobile-display') ||
         document.getElementById('bilibiliPlayer');
         if (!container) return;
-        
+
         // Remove old toast if video seeking before the toast is gone
         let oldToast = document.getElementById('custom-seek-toast');
         if (oldToast) oldToast.remove();
         if (toastTimeout) clearTimeout(toastTimeout);
-        
+
         // Reconstructing the native toast
         const seekToast = document.createElement('div');
         seekToast.id = 'custom-seek-toast';
         seekToast.className = `ip-toast ${isBackward ? 'ip-toast--left' : 'ip-toast--right'} ip-toast--ttb`;
-        
+
         const iconStyle = isBackward ? "transform: rotate(180deg);" : "";
         seekToast.innerHTML = `
             <img src="//p.bstarstatic.com/fe-lib/images/web/forward.png" style="${iconStyle}">
             <span>${step}s</span>
         `;
-        
+
         container.appendChild(seekToast);
-        
+
         toastTimeout = setTimeout(() => {
             if (seekToast.parentNode) seekToast.remove();
         }, 400);
     }
-    
+
     window.addEventListener('keydown', function(e) {
         let isSubHidden = document.body.classList.contains('bili-subs-hidden');
         const tag = e.target.tagName.toLowerCase();
         if (tag === 'input' || tag === 'textarea' || e.target.isContentEditable) { return; }
-        
+
         // Toggle show/hide subtitles
         if (e.key.toLowerCase() === TOGGLE_SUB_SHORTCUT && !e.ctrlKey && !e.altKey && !e.metaKey) {
             e.preventDefault();
-            
+
             document.body.classList.toggle('bili-subs-hidden');
-            
+
             showPopup(`Subtitles: ${isSubHidden ? 'On' : 'Off'}`);
             return;
         }
-        
+
         // Cycle subtitles forward/backward
         if (e.key.toLowerCase() === CYCLE_SUB_SHORTCUT && !e.ctrlKey && !e.altKey && !e.metaKey) {
             e.preventDefault();
-            
+
             let items = Array.from(document.querySelectorAll(
                 '.ip-subtitle .ip-subtitle--item:not(.ip-subtitle--item__feedback)'
             ));
@@ -131,33 +133,53 @@ const POPUP_DURATION = 500; // milliseconds
                     '.ip-subtitle-mobile-dialog__content .ip-subtitle-mobile--item:not(.ip-subtitle-mobile--item-dialog-feedback)'
                 ));
             }
-            
+
             if (items.length === 0) return;
-            
+
             let activeIndex = items.findIndex(item => item.classList.contains('active'));
             if (activeIndex === -1) activeIndex = 0;
-            
+
             let nextIndex = e.shiftKey
             ? (activeIndex - 1 + items.length) % items.length
             : (activeIndex + 1) % items.length;
-            
+
             const targetItem = items[nextIndex];
             targetItem.click();
-            
+
             const langText = targetItem.textContent.trim();
             showPopup(`Subtitle: ${langText}${isSubHidden ? ' (hidden)' : ''}`);
         }
-        
+
         // Video seek
         if (e.key === 'ArrowLeft' || e.key === 'ArrowRight') {
             const video = document.querySelector('.player-mobile-video-wrap video');
             if (video) {
                 e.preventDefault();
                 e.stopImmediatePropagation(); // stops Bilibili's seek listener
-                
+
                 const isBackward = e.key === 'ArrowLeft';
                 video.currentTime += isBackward ? -SEEK_STEP : SEEK_STEP;
-                
+
+                // update the subtitle text by selecting the currently-selected subtitle language
+                // workaround for subtitle not updating bug due to custom seek
+                let items = Array.from(document.querySelectorAll(
+                    '.ip-subtitle .ip-subtitle--item:not(.ip-subtitle--item__feedback)'
+                ));
+                if (items.length === 0) {
+                    items = Array.from(document.querySelectorAll(
+                        '.ip-subtitle-mobile-dialog__content .ip-subtitle-mobile--item:not(.ip-subtitle-mobile--item-dialog-feedback)'
+                    ));
+                }
+                if (items.length != 0) {
+                    let activeIndex = items.findIndex(item => item.classList.contains('active'));
+                    items[activeIndex].click();
+                    // hide the "Subtitles loaded" message immediately after the subtitle workaround
+                    setTimeout(() => {
+                        let waMessage = document.querySelector('.wa-message-container__left .wa-message');
+                        waMessage.style.display = 'none';
+                    }, 1);
+                }
+
                 showNativeSeekToast(isBackward, SEEK_STEP);
                 return;
             }
